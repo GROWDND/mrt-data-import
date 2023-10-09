@@ -41,18 +41,22 @@ function convertHTMLToJSON(directoryPath, fileType) {
           columns.each((colIndex, colElement) => {
             const key = headerRow[colIndex];
             const value = $(colElement).text().trim();
-            legalRequirement[key] = value;
+
+            if(key !== value ) {
+
+              legalRequirement[key] = value;
+            }
           });
 
           // Check if all fields are not empty and do not match their respective keys
-          if (fileType !== 'legal' || !isMatchingKeysAndValues(legalRequirement)) {
+          if (fileType !== '' && !isMatchingKeysAndValues(legalRequirement)) {
             legalRequirements.push(legalRequirement);
           }
         }
       });
 
       const jsonResult = {
-        allLegalRequirements: legalRequirements,
+        data: legalRequirements,
       };
 
 
@@ -63,9 +67,14 @@ let cleanedFilename = path
   .replace(/[\s+]/g, '_')
   .replace(/[^\w\s]/g, '') // Remove special characters
   .replace(/_+/g, '_') // Replace multiple underscores with a single underscore
-  cleanedFilename = cleanedFilename.slice(0,-1)
+  let outputFilename;
 
-const outputFilename = `${cleanedFilename}_${fileType}.json`;
+  if(!fileType){
+     outputFilename = `${cleanedFilename}.json`;
+  } else {
+     outputFilename = `${cleanedFilename}_${fileType}.json`;
+  }
+
 const outputPath = path.join(outputFolderPath, outputFilename);
 
 
@@ -86,8 +95,8 @@ function isMatchingKeysAndValues(obj) {
 }
 
 // Check if the correct number of arguments are provided
-if (process.argv.length !== 4) {
-  console.error('Usage: node htmlToJSON.js <directory> <fileType>');
+if (process.argv.length < 3 || process.argv.length > 4) {
+  console.error('Usage: node mrtHtmlToJson.js <directory> [fileType]');
   process.exit(1);
 }
 

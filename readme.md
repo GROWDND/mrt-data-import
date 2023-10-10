@@ -49,29 +49,45 @@ drag and dropfiles, write a little message, then push the green commit button.
 
 
 __/resources/who-is-a-mandated-reporter/__
+
 -[Child Abuse](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/who_is_a_mandated_reporter)
+
 -[Domestic Violence](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/who_is_a_mandated_reporter)
+
 -[Elder Abuse](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/who_is_a_mandated_reporter)
 
 -[Child Abuse Accordian Questions](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/who_is_a_mandated_reporter)
+
 -[Domestic Violence Accordian Questions](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/who_is_a_mandated_reporter)
+
 -[Elder Abuse Accordian Questions](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/who_is_a_mandated_reporter)
 
+
+
+
 __/resources/how-to-report/__
+
 -[How to Report - Child](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/states/how_to_report)
+
 -[How to Report - Elder](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/states/how_to_report)
 
 __/resources/laws-and-regulations/__
+
 -[Legal - Child](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/states/childAbuse/legal)
+
 -[Legal - Elder](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/states/elderAbuse/legal)
 
 
 __/resources/state-resources/__
+
 -[Resources - Child](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/states/childAbuse/resources)
+
 -[Resources - Elder](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/states/elderAbuse/resources)
 
 
 __/resources/sources-and-citations/__
+
 -[Sources - Child](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/sources/childAbuse)
+
 -[Sources - Elder](https://github.com/GROWDND/mandatedReporterTraining/tree/master/data/sources/elderAbuse)
 

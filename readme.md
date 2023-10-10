@@ -2,21 +2,33 @@
 
 
 ### Github
- - clone or download the Repo as a zip
+ - clone or download all the files in the current project by using the Green "<> code" dropdown then selecting "download ZIP"
+
 
 ### Google Sheets
- Export the document as a web page (.html) 
+ Export the relevant spreadsheet document as a web page (.html) 
  `File -> Download -> Web page (.html)` 
 
 
 ### The Script
 Once the file is downloaded, unzip the folder to the directory of your choice.
 
-open a new terminal: *Mac*
- `Open spotliht search (⌘ + space)`
- `Type *Terminal*`
+##### open a new terminal: *Mac*
+ To open Terminal on a Mac:
+1. Navigate to Applications/Utilities/Terminal.app
 
- open a new command pompt: *Windows*
+-or-
+
+2. Open Spotlight Search and type “Terminal”
+
+Mac users can open a Finder window where Github repo lives and right click on directory path to “Open in Terminal”
+
+-or-
+
+Copy “as Pathname” and paste into Terminal
+
+
+ ##### open a new command pompt: *Windows*
  `Windows Key => Type "cmd" push enter`
 
 

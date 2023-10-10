@@ -2,7 +2,7 @@
 
 
 ### Github
- - clone down or download the Repo as a zip
+ - clone or download the Repo as a zip
 
 ### Google Sheets
  Export the document as a web page (.html) 

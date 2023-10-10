@@ -3,7 +3,7 @@ const path = require('path');
 const cheerio = require('cheerio');
 
 // Define a function to convert HTML files to JSON objects
-function convertHTMLToJSON(directoryPath, fileType) {
+let convertHTMLToJSON = (directoryPath) => {
   const jsonResults = [];
 
   // Create an "output" folder if it doesn't exist
@@ -20,23 +20,15 @@ function convertHTMLToJSON(directoryPath, fileType) {
     if (filename.endsWith('.html')) {
       const filePath = path.join(directoryPath, filename);
       const fileContents = fs.readFileSync(filePath, 'utf-8');
-
-      // Load the HTML content into Cheerio
       const $ = cheerio.load(fileContents);
-
-      // Find the table within the HTML
       const tableRows = $('table.waffle tbody tr');
-
-      const legalRequirements = [];
-
-      // Get the header row dynamically
+      const rows = [];
       const headerRow = $(tableRows[0]).find('td').map((index, element) => $(element).text().trim());
 
-      // Iterate through the table rows and extract data
       tableRows.each((index, element) => {
-        if (index !== 0) { // Skip the header row
+        if (index !== 0) { 
           const columns = $(element).find('td');
-          const legalRequirement = {};
+          const dataObject = {};
 
           columns.each((colIndex, colElement) => {
             const key = headerRow[colIndex];
@@ -44,44 +36,38 @@ function convertHTMLToJSON(directoryPath, fileType) {
 
             if(key !== value ) {
 
-              legalRequirement[key] = value;
+              dataObject[key] = value;
             }
           });
 
-          // Check if all fields are not empty and do not match their respective keys
-          if (fileType !== '' && !isMatchingKeysAndValues(legalRequirement)) {
-            legalRequirements.push(legalRequirement);
+
+          if (!isMatchingKeysAndValues(dataObject)) {
+            rows.push(dataObject);
           }
         }
       });
 
       const jsonResult = {
-        data: legalRequirements,
+        data: rows,
       };
 
 
-// Generate the output JSON filename based on the input filename and fileType
-let cleanedFilename = path
-  .basename(filename, '.html')
-  .toLowerCase()
-  .replace(/[\s+]/g, '_')
-  .replace(/[^\w\s]/g, '') // Remove special characters
-  .replace(/_+/g, '_') // Replace multiple underscores with a single underscore
-  let outputFilename;
 
-  if(!fileType){
-     outputFilename = `${cleanedFilename}.json`;
-  } else {
-     outputFilename = `${cleanedFilename}_${fileType}.json`;
+  let cleanedFilename = path
+    .basename(filename, '.html')
+    .toLowerCase()
+    .replace(/[\s+]/g, '_')
+    .replace(/[^\w\s]/g, '') 
+    .replace(/_+/g, '_');
+
+  if(cleanedFilename.slice(cleanedFilename.length -1 , cleanedFilename.length)  === '_') {
+    cleanedFilename = cleanedFilename.slice(0 , cleanedFilename.length -1)
   }
-
-const outputPath = path.join(outputFolderPath, outputFilename);
-
-
-
-      // Write the JSON result to the output file
+  
+  
+  let outputFilename = `${cleanedFilename}.json`;
+  const outputPath = path.join(outputFolderPath, outputFilename);
       fs.writeFileSync(outputPath, JSON.stringify(jsonResult, null, 2));
-
       jsonResults.push(outputPath);
     }
   });
@@ -89,21 +75,18 @@ const outputPath = path.join(outputFolderPath, outputFilename);
   return jsonResults;
 }
 
-// Function to check if all fields do not match their respective keys
-function isMatchingKeysAndValues(obj) {
+let isMatchingKeysAndValues = (obj) => {
   return Object.keys(obj).every((key) => obj[key] === key || obj[key] === '');
 }
 
-// Check if the correct number of arguments are provided
-if (process.argv.length < 3 || process.argv.length > 4) {
-  console.error('Usage: node mrtHtmlToJson.js <directory> [fileType]');
+if (process.argv.length < 3 || process.argv.length >= 4) {
+  console.error('Usage: node mrtHtmlToJson.js <directory>');
   process.exit(1);
 }
 
+//runner
 const directoryPath = process.argv[2];
-const fileType = process.argv[3];
-
-const result = convertHTMLToJSON(directoryPath, fileType);
+const result = convertHTMLToJSON(directoryPath);
 
 // Output the paths of the generated JSON files
 console.log('Generated JSON files:');

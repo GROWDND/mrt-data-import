@@ -34,6 +34,9 @@ Copy “as Pathname” and paste into Terminal
 
 Navigate to the current directory  where the Github repo live and copy the path.
 
+
+
+#### change the current location of the directory.
 Change the current location of the terminal to the path with the script.  *make sure the path is in quotes*
 
 `cd "C:/download/mrtSheetsToData"`
